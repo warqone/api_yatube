@@ -39,11 +39,11 @@ class Post(models.Model):
         verbose_name='Группа поста',
     )
 
-    def __str__(self):
-        return self.text[:LETTER_LIMIT]
-
     class Meta:
         default_related_name = 'posts'
+
+    def __str__(self):
+        return self.text[:LETTER_LIMIT]
 
 
 class Comment(models.Model):
@@ -64,3 +64,6 @@ class Comment(models.Model):
 
     class Meta:
         default_related_name = 'comments'
+
+    def __str__(self):
+        return f'Комментарий от {self.author}: {self.text}. Пост: {self.post}'
